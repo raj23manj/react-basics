@@ -45,7 +45,18 @@
     * https://reactjs.org/docs/events.html#supported-events
     * https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/8124210#overview  
 
-  *   
+  * Stateful and Stateless
+    * Stateful: containers, smartComponent
+      * as class based  
+      * when need to manage states, use state, useState
+    * Stateless: presentational, dumb components
+      * used when no state is managed
+      * Use this more
+
+  * Passing Method Reference like ember & Binding
+    * pass in as props  
+    * to pass arguments to function call use bind(this, ...)  
+      * .bind(this, 'july')
 
 # Commands
   * new project 
