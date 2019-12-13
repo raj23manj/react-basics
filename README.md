@@ -58,6 +58,9 @@
     * to pass arguments to function call use bind(this, ...)  
       * .bind(this, 'july')
 
+  * Important Links
+    * https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/8145390#overview    
+
 # Commands
   * new project 
     * create-react-app react-complete-guide --scripts-version 1.1.5
