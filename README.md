@@ -19,6 +19,7 @@
     * props allow you to pass data from a parent (wrapping) component to a child (embedded) component.
 
   * state
+    * can be used only once to manage the states
     * use this. to access as it is a class
     * Whilst props allow you to pass data down the component tree (and hence trigger an UI update), state is used to change the      component, well, state from within. Changes to state also trigger an UI update.
     * state is only available class based components that inherit from  Component from react 
@@ -30,6 +31,7 @@
   * react Hooks(16.8 +)
     * can be used in normal function with out calss based definition to handle states just like class
     * useState
+      * unlike class, can be used multiple times 
       * returns array with two elements
         * 1st element => current state with changed array and one old array
         * 2nd element => a function that updates the state, i'e react is aware of it and re-render the component
