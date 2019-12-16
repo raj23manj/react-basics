@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import Radium, { StyleRoot } from 'radium';
 class App extends Component {
   // comes from component
   state = {
@@ -60,14 +61,23 @@ class App extends Component {
   render() {
 
     const style = {
-      backgrouundColor: 'white',
+      backgroundColor: 'green',
       font: 'inherit',
       border: '1px solid blue',
-      padding: '8px'
+      padding: '8px',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     let persons = null;
     if (this.state.showPersons) {
+      style.backgroundColor = "red";
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      };
       persons = (
         <div>
           {
@@ -83,7 +93,6 @@ class App extends Component {
               />
             })
           }
-
 
           {/* <Person name="Max" age="23" /> */}
           {/* <Person
@@ -103,15 +112,23 @@ class App extends Component {
       );
     }
 
+    let pClass = 'green';
+    if (this.state.persons.length <= 1) {
+      pClass = ['red', 'bold'].join(' ');
+    }
+
     return (
+      // <StyleRoot> radium
       <div className="App">
         <h1>Hi yipee {50 * 40} - state: {this.state.otherState}</h1>
+        <p className={pClass}>Dynamic Parargraph</p>
         {/* <button onClick={this.switchNameHandler.bind(this, 'july')}>Switch Name</button> */}
         {/* not recommended and is in-efficient */}
         {/* <button style={style} onClick={() => this.switchNameHandler('july')}>Switch Name</button> */}
         <button style={style} onClick={this.togglePersonHandler}>Switch Name</button>
         {persons}
       </div >
+      // </StyleRoot>
     );
 
     // return React.createElement('div', null, React.createElement('h1', null, 'Yipee React App !!!'));
@@ -165,4 +182,8 @@ class App extends Component {
 //     </div>
 //   );
 // }
-export default App;
+// use raium for pseudo classes , like hover
+
+export default Radium(App);
+
+//export default App;
