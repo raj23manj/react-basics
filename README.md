@@ -59,7 +59,10 @@
       * .bind(this, 'july')
 
   * Important Links
-    * https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/8145390#overview    
+    * https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/8145390#overview   
+
+  * To Use media queries and pseudo class (:hover), we need to add 'Radium' package or 'Styled-components'
+    * need to wrap export with Radium(App), and the entire application in app.js with 'StyleRoot'   
 
 # Commands
   * new project 
