@@ -1,8 +1,21 @@
 // import React, { Component, useState } from 'react';
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from '../components/Persons/Person/Person';
-import Radium, { StyleRoot } from 'radium';
+//import Radium, { StyleRoot } from 'radium';
+import styled from 'styled-components';
+
+// const StyledButton = styled.button`
+//     background-color: ${props => props.alt ? 'red' : 'green'};
+//     font: inherit;
+//     border: 1px solid blue;
+//     padding: 8px;
+
+//     &:hover {
+//       background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+//       color: black;
+//     }`;
+
 class App extends Component {
   // comes from component
   state = {
@@ -14,17 +27,6 @@ class App extends Component {
     showPersons: false
   };
 
-  // switchNameHandler = (newName) => {
-  //   //console.log('was Clicked');
-  //   // don't do this
-  //   // this.state.persons[0] = "July";
-  //   this.setState({
-  //     persons: [
-  //       { name: newName, age: 23 },
-  //       { name: 'Manu', age: 24 }
-  //     ]
-  //   });
-  // }
 
   deletePersonHandler = (index) => {
     // const persons = this.state.persons.slice();
@@ -60,24 +62,15 @@ class App extends Component {
 
   render() {
 
-    const style = {
-      backgroundColor: 'green',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
-
+    let btnClass = [classes.button];
     let persons = null;
+    let pClass = classes.green;
     if (this.state.showPersons) {
-      style.backgroundColor = "red";
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      };
+      // style.backgroundColor = "red";
+      // style[':hover'] = {
+      //   backgroundColor: 'salmon',
+      //   color: 'black'
+      // };
       persons = (
         <div>
           {
@@ -93,39 +86,30 @@ class App extends Component {
               />
             })
           }
-
-          {/* <Person name="Max" age="23" /> */}
-          {/* <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}
-            change={this.nameChangedHandler}
-          />
-          <Person
-            name="Bill"
-            age="25"
-            click={this.switchNameHandler.bind(this, 'july!')}
-          >
-            My Hobbies: Racing
-            </Person> */}
-          {/* <Person></Person> */}
         </div>
       );
-    }
 
-    let pClass = 'green';
-    if (this.state.persons.length <= 1) {
-      pClass = ['red', 'bold'].join(' ');
+      btnClass.push(classes.red);
+
+      if (this.state.persons.length <= 1) {
+        pClass = [classes.red, classes.bold].join(' ');
+      }
     }
 
     return (
       // <StyleRoot> radium
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi yipee {50 * 40} - state: {this.state.otherState}</h1>
         <p className={pClass}>Dynamic Parargraph</p>
         {/* <button onClick={this.switchNameHandler.bind(this, 'july')}>Switch Name</button> */}
         {/* not recommended and is in-efficient */}
         {/* <button style={style} onClick={() => this.switchNameHandler('july')}>Switch Name</button> */}
-        <button style={style} onClick={this.togglePersonHandler}>Switch Name</button>
+        {/* <StyledButton style={style} onClick={this.togglePersonHandler} alt={this.state.showPersons}>
+          Switch Name
+        </StyledButton> */}
+        <button className={btnClass.join(' ')} onClick={this.togglePersonHandler} >
+          Switch Name
+        </button>
         {persons}
       </div >
       // </StyleRoot>
@@ -184,6 +168,6 @@ class App extends Component {
 // }
 // use raium for pseudo classes , like hover
 
-export default Radium(App);
+//export default Radium(App);
 
-//export default App;
+export default App;

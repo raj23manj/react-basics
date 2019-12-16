@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 //import './Person.css';
-import Radium from 'radium';
+//import Radium from 'radium';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div` 
