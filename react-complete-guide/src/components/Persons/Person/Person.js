@@ -3,19 +3,8 @@ import React, { Component } from 'react';
 //import './Person.css';
 //import Radium from 'radium';
 import styled from 'styled-components';
+import classes from './Person.css'
 
-const StyledDiv = styled.div` 
-{
-     width:60%;
-     margin: auto;
-     border: 1px solid #eee;
-     box-shadow: 0 2px 3px #eee;
-     padding: 16px;
-     text-align: center;
-} 
-@media (min-width: 500px) {
-   width: 450px;   
-}`
 // function person() {
 //     return <h1></h1>;
 // }
@@ -37,11 +26,13 @@ const person = (props) => {
     };
     return (
         // <div className="Person" style={style}>
-        <StyledDiv>
+        // <StyledDiv>
+        <div className={classes.Person}>
             < p onClick={props.click} > I'm a Person name: {props.name}, age: {props.age}</p>
             < p > {props.children}</p >
             <input text="text" onChange={props.changed} value={props.name} />
-        </StyledDiv >
+        </div>
+        // </StyledDiv >
     );
 };
 
