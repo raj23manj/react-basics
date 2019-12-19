@@ -1,7 +1,8 @@
 // import React, { Component, useState } from 'react';
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from '../components/Persons/Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 //import Radium, { StyleRoot } from 'radium';
 import styled from 'styled-components';
 
@@ -17,18 +18,43 @@ import styled from 'styled-components';
 //     }`;
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    console.log("App.js Constructor");
+    this.state = {
+      persons: [
+        { id: '1', name: 'Max', age: 23 },
+        { id: '2', name: 'Manu', age: 24 },
+      ],
+      otherState: 'some other state',
+      showPersons: false
+    }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('getDerivedStateFromProps: ', props)
+    return state;
+  }
+
+  componentDidMount() {
+    console.log("App.js : componentDidiMount");
+  }
+
   // comes from component
-  state = {
-    persons: [
-      { id: '1', name: 'Max', age: 23 },
-      { id: '2', name: 'Manu', age: 24 },
-    ],
-    otherState: 'some other state',
-    showPersons: false
-  };
+  // this in the back creates a constructor and does same as above
+  // state = {
+  //   persons: [
+  //     { id: '1', name: 'Max', age: 23 },
+  //     { id: '2', name: 'Manu', age: 24 },
+  //   ],
+  //   otherState: 'some other state',
+  //   showPersons: false
+  // };
 
 
   deletePersonHandler = (index) => {
+    console.log('delete');
     // const persons = this.state.persons.slice();
     const persons = [...this.state.persons]; // return a new array like copy
     persons.splice(index, 1);
@@ -36,8 +62,6 @@ class App extends Component {
   }
 
   nameChangedHandler = (event, id) => {
-    console.log('id', id);
-    console.log(event.target.name);
     const personIndex = this.state.persons.findIndex((person) => {
       return person.id === id
     });
@@ -61,10 +85,9 @@ class App extends Component {
   }
 
   render() {
-
-    let btnClass = [classes.button];
+    console.log('App.js render');
     let persons = null;
-    let pClass = classes.green;
+
     if (this.state.showPersons) {
       // style.backgroundColor = "red";
       // style[':hover'] = {
@@ -72,44 +95,23 @@ class App extends Component {
       //   color: 'black'
       // };
       persons = (
-        <div>
-          {
-            this.state.persons.map((person, index) => {
-              return <Person
-                name={person.name}
-                age={person.age}
-                // click={this.deletePersonHandler.bind(this, index)}
-                click={() => this.deletePersonHandler(index)}
-                // important key property to detect change, give uniqu value
-                key={person.id}
-                changed={(event) => this.nameChangedHandler(event, person.id)}
-              />
-            })
-          }
-        </div>
+        <Persons persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+        />
       );
 
-      btnClass.push(classes.red);
 
-      if (this.state.persons.length <= 1) {
-        pClass = [classes.red, classes.bold].join(' ');
-      }
     }
 
     return (
       // <StyleRoot> radium
-      <div className={classes.App}>
-        <h1>Hi yipee {50 * 40} - state: {this.state.otherState}</h1>
-        <p className={pClass}>Dynamic Parargraph</p>
-        {/* <button onClick={this.switchNameHandler.bind(this, 'july')}>Switch Name</button> */}
-        {/* not recommended and is in-efficient */}
-        {/* <button style={style} onClick={() => this.switchNameHandler('july')}>Switch Name</button> */}
-        {/* <StyledButton style={style} onClick={this.togglePersonHandler} alt={this.state.showPersons}>
-          Switch Name
-        </StyledButton> */}
-        <button className={btnClass.join(' ')} onClick={this.togglePersonHandler} >
-          Switch Name
-        </button>
+      < div className={classes.App} >
+        <Cockpit showPersons={this.state.showPersons}
+          otherState={this.state.otherState}
+          toggel={this.togglePersonHandler}
+          title={this.props.appTitle}
+          persons={this.state.persons} />
         {persons}
       </div >
       // </StyleRoot>
@@ -166,7 +168,7 @@ class App extends Component {
 //     </div>
 //   );
 // }
-// use raium for pseudo classes , like hover
+// use radium for pseudo classes , like hover
 
 //export default Radium(App);
 

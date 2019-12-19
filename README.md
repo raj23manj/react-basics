@@ -64,6 +64,21 @@
   * To Use media queries and pseudo class (:hover), we need to add 'Radium' package or 'Styled-components'
     * need to wrap export with Radium(App), and the entire application in app.js with 'StyleRoot'   
 
+  * Life Cycles
+    * availabe only in class based components
+      * During Creation
+        * constructor(props) -> 1st ()
+        * getDerivedStateFromProps(props, state) -> 2nd (props change)
+        * render() => then all child and their lifecycle hooks get called -> 3rd
+        * componentDidMount() -> triggers re-render, used for async calls
+      * getSnapshotBeforeUpdate()
+      * componentDidCatch()
+      * componentWillUnmount() => not used
+      * shouldComponentUpdate()
+      * componentDidUpdate()
+      
+      
+
 # Commands
   * new project 
     * create-react-app react-complete-guide --scripts-version 1.1.5
