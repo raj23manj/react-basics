@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 
 import Person from './Person/Person'
 
@@ -21,7 +21,7 @@ import Person from './Person/Person'
 
 // export default persons;
 
-
+//class Persons extends PureComponent {
 class Persons extends Component {
 
     // static getDerivedStateFromProps(props, state) {
@@ -38,10 +38,15 @@ class Persons extends Component {
     // componentWillUpdate() {
 
     // }
-
+    // use this if we want to check specific propps changed, if want to change when all props chanhe then extend class from PureComponent
     shouldComponentUpdate(nextProps, nextState) {
         console.log('[Persons.js] shouldComponentUpdate');
-        return true; // this is important
+        if (nextProps.persons !== this.props.persons) {
+            return true;
+        } else {
+            return false;
+        }
+        ; // this is important
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {

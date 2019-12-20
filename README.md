@@ -75,6 +75,7 @@
       * During Updation(props or state changes occur)       
        * getDerivedStateFromProps(props, state)
        * shouldComponentUpdate(nextProps, nextState) => check wheter or not to continue
+         * use this if we want to check specific propps changed, if want to change when all props chanhe then extend class from PureComponent
        * render()
        * and then updates child components
        * getSnapshotBeforeUpdate(prevProps, prevState) => used for like restore scrolling position
@@ -83,8 +84,12 @@
       * componentDidCatch()
       * componentWillUnmount() => not used
 
-      
-      
+  * React Update Dom
+    * It does by creating virtual dom of old and changed in memory compare them, if there are changes in the actual dom is touched and updates only the parts which has changes, when render encounters
+    * shouldComponentUpdate => is used to control   
+
+  * When rendering an array of elements as individual components it is important  to pass key to it, see persons componenet rendering person component    
+     
 
 # Commands
   * new project 

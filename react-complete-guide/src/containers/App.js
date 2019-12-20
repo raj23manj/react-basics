@@ -126,11 +126,12 @@ class App extends Component {
       // <StyleRoot> radium
       < div className={classes.App} >
         <button onClick={() => { this.setState({ showCockpit: false }) }}>Remove Cockpit</button>
-        {this.state.showCockpit ? <Cockpit showPersons={this.state.showPersons}
-          otherState={this.state.otherState}
-          toggel={this.togglePersonHandler}
-          title={this.props.appTitle}
-          persons={this.state.persons} /> : null}
+        {this.state.showCockpit ?
+          <Cockpit showPersons={this.state.showPersons}
+            otherState={this.state.otherState}
+            toggel={this.togglePersonHandler}
+            title={this.props.appTitle}
+            personsLength={this.state.persons.length} /> : null}
         {persons}
       </div >
       // </StyleRoot>

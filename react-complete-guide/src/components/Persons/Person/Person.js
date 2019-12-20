@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 //import Radium from 'radium';
 import styled from 'styled-components';
 import classes from './Person.css'
+import Aux from '../../../hoc/Aux';
 
 // function person() {
 //     return <h1></h1>;
@@ -39,12 +40,21 @@ import classes from './Person.css'
 
 class Person extends Component {
     render() {
-        return (
-            <div className={classes.Person}>
-                < p onClick={this.props.clicked} > I'm a Person name: {this.props.name}, age: {this.props.age}</p>
-                < p > {this.props.children}</p >
-                <input text="text" onChange={this.props.changed} value={this.props.name} />
-            </div>
+        // return (
+        //     <div className={classes.Person}>
+        //         < p onClick={this.props.clicked} > I'm a Person name: {this.props.name}, age: {this.props.age}</p>
+        //         < p > {this.props.children}</p >
+        //         <input text="text" onChange={this.props.changed} value={this.props.name} />
+        //     </div>
+        // );
+        // 102
+        //   return [,]
+
+        return (<Aux>
+            < p onClick={this.props.clicked} > I'm a Person name: {this.props.name}, age: {this.props.age}</p>
+            < p > {this.props.children}</p >
+            <input text="text" onChange={this.props.changed} value={this.props.name} />
+        </Aux>
         );
     }
 

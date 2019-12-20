@@ -9,13 +9,14 @@ const cockpit = (props) => {
         console.log('[cockpit.js] useEffect');
         // http request
 
-        setTimeout(() => {
-            alert('saved data to cloud')
-        });
+        const timer = setTimeout(() => {
+            alert('saved data to cloud');
+        }, 1000);
         return () => {
+            clearTimeout(timer);
             console.log('Cockpit.js cleanup work in effect');
         }
-    }, [props.persons]); // if need to run only once then add [] after render and unmounted
+    }, []); // if need to run only once then add [] after render and unmounted //[props.persons]
 
     useEffect(() => {
         console.log('[cockpit.js] 2nd useEffect');
@@ -28,7 +29,7 @@ const cockpit = (props) => {
 
     let pClass = classes.green;
 
-    if (props.persons.length <= 1) {
+    if (props.personsLength <= 1) {
         pClass = [classes.red, classes.bold].join(' ');
     }
 
@@ -54,4 +55,4 @@ const cockpit = (props) => {
     );
 };
 
-export default cockpit;
+export default React.memo(cockpit); // performance optimisation, use memoiseztion, if props change only chanes
