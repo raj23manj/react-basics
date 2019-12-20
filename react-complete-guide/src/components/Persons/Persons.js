@@ -55,6 +55,11 @@ class Persons extends Component {
         console.log(snapshot);
     }
 
+    // clean up work, like ngDestroy
+    componentWillUnmount() {
+        console.log('[Persons.js] componentWillUnmount');
+    }
+
     render() {
         console.log("person.js: Rendering")
         return (

@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Cockpit.css'
 
 const cockpit = (props) => {
+    // executes for every render cycle of cockpits
+    // can have multiple useEffects
+    useEffect(() => {
+        // component did mount and componentDidEffect together
+        console.log('[cockpit.js] useEffect');
+        // http request
+
+        setTimeout(() => {
+            alert('saved data to cloud')
+        });
+        return () => {
+            console.log('Cockpit.js cleanup work in effect');
+        }
+    }, [props.persons]); // if need to run only once then add [] after render and unmounted
+
+    useEffect(() => {
+        console.log('[cockpit.js] 2nd useEffect');
+        return () => {
+            console.log('Cockpit.js cleanup work in 2nd effect'); // will run always
+        }
+    });
 
     let btnClass = [classes.button];
 

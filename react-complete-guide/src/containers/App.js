@@ -28,7 +28,8 @@ class App extends Component {
         { id: '2', name: 'Manu', age: 24 },
       ],
       otherState: 'some other state',
-      showPersons: false
+      showPersons: false,
+      showCockpit: true
     }
   }
 
@@ -121,13 +122,15 @@ class App extends Component {
     }
 
     return (
+
       // <StyleRoot> radium
       < div className={classes.App} >
-        <Cockpit showPersons={this.state.showPersons}
+        <button onClick={() => { this.setState({ showCockpit: false }) }}>Remove Cockpit</button>
+        {this.state.showCockpit ? <Cockpit showPersons={this.state.showPersons}
           otherState={this.state.otherState}
           toggel={this.togglePersonHandler}
           title={this.props.appTitle}
-          persons={this.state.persons} />
+          persons={this.state.persons} /> : null}
         {persons}
       </div >
       // </StyleRoot>
