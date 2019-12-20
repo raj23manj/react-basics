@@ -32,6 +32,22 @@ class App extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true; // this is important
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('[App.js] getSnapshotBeforeUpdate');
+    // executes after render()
+    return { message: 'SnapShot' };
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('[Persons.js] componentDidUpdate');
+    console.log(snapshot);
+  }
+
   static getDerivedStateFromProps(props, state) {
     console.log('getDerivedStateFromProps: ', props)
     return state;

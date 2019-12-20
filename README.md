@@ -71,11 +71,18 @@
         * getDerivedStateFromProps(props, state) -> 2nd (props change)
         * render() => then all child and their lifecycle hooks get called -> 3rd
         * componentDidMount() -> triggers re-render, used for async calls
-      * getSnapshotBeforeUpdate()
+
+      * During Updation(props or state changes occur)       
+       * getDerivedStateFromProps(props, state)
+       * shouldComponentUpdate(nextProps, nextState) => check wheter or not to continue
+       * render()
+       * and then updates child components
+       * getSnapshotBeforeUpdate(prevProps, prevState) => used for like restore scrolling position
+       * componentDidUpdate() => after dom updated
+ 
       * componentDidCatch()
       * componentWillUnmount() => not used
-      * shouldComponentUpdate()
-      * componentDidUpdate()
+
       
       
 
