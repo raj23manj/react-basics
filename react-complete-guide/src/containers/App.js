@@ -4,7 +4,10 @@ import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 //import Radium, { StyleRoot } from 'radium';
-import styled from 'styled-components';
+//import styled from 'styled-components';
+// import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Aux';
 
 // const StyledButton = styled.button`
 //     background-color: ${props => props.alt ? 'red' : 'green'};
@@ -124,7 +127,9 @@ class App extends Component {
     return (
 
       // <StyleRoot> radium
-      < div className={classes.App} >
+      //< WithClass classes={classes.App} > // one way see 106 for when to use which
+      // use with withClass(App, classes.App) approach when we need to add google analytics or some js code to be executed
+      <Aux>
         <button onClick={() => { this.setState({ showCockpit: false }) }}>Remove Cockpit</button>
         {this.state.showCockpit ?
           <Cockpit showPersons={this.state.showPersons}
@@ -133,7 +138,8 @@ class App extends Component {
             title={this.props.appTitle}
             personsLength={this.state.persons.length} /> : null}
         {persons}
-      </div >
+      </Aux>
+      //</WithClass >
       // </StyleRoot>
     );
 
@@ -192,4 +198,4 @@ class App extends Component {
 
 //export default Radium(App);
 
-export default App;
+export default withClass(App, classes.App);
