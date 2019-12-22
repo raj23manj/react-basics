@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import classes from './Person.css'
 import Aux from '../../../hoc/Aux';
+import withClass from '../../../hoc/withClass';
+
 
 // function person() {
 //     return <h1></h1>;
@@ -63,4 +65,4 @@ class Person extends Component {
 
 // export default Radium(person);
 // export default person;
-export default Person;
+export default withClass(Person, classes.Person);

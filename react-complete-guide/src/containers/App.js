@@ -32,7 +32,8 @@ class App extends Component {
       ],
       otherState: 'some other state',
       showPersons: false,
-      showCockpit: true
+      showCockpit: true,
+      changeCounter: 0
     }
   }
 
@@ -93,9 +94,20 @@ class App extends Component {
     person.name = event.target.value;
     const persons = [...this.state.persons];
     persons[personIndex] = person;
-
-    this.setState({
-      persons: persons
+    // (107)set state though called synchronously is not gaurenteed 
+    // to execute and finish it immediately
+    // this is is ok if no other component is depending on the change, if multiple component depends then
+    // pass a function
+    // this.setState({
+    //   persons: persons,
+    //   changeCounter: this.state.changeCounter + 1
+    // });
+    // below approach is better when we depend on old state
+    this.setState((prevState, props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1
+      }
     });
   }
 
