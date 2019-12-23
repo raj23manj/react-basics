@@ -54,6 +54,7 @@ const cockpit = (props) => {
             <button ref={toggleBtnRef} className={btnClass.join(' ')} onClick={props.toggel} >
                 Switch Name
             </button>
+            <button onClick={props.login}>Log In</button>
         </div>
     );
 };

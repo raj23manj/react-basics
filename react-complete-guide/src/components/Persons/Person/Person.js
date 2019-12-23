@@ -65,6 +65,12 @@ class Person extends Component {
         // <React.Fragment></React.Fragment> or <Fragment></Fragment> by importing from {Fragment} from 'react'
         // does same as AUX 
         return (<Aux>
+            {
+                this.props.isAuth ?
+                    <p>Authenticated</p>
+                    :
+                    <p>Please Log In</p>
+            }
             < p onClick={this.props.clicked} > I'm a Person name: {this.props.name}, age: {this.props.age}</p>
             < p > {this.props.children}</p >
             <input text="text"

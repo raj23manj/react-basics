@@ -77,6 +77,7 @@ class Persons extends Component {
                     // important key property to detect change, give uniqu value
                     key={person.id}
                     changed={(event) => this.props.changed(event, person.id)}
+                    isAuth={this.props.isAuthenticated}
                 />
             })
         );
