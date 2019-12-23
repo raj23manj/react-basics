@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import classes from './Person.css'
 import Aux from '../../../hoc/Aux';
 import withClass from '../../../hoc/withClass';
-
+import PropTypes from 'prop-types';
 
 // function person() {
 //     return <h1></h1>;
@@ -61,6 +61,13 @@ class Person extends Component {
         );
     }
 
+};
+
+Person.propTypes = {
+    click: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func
 };
 
 // export default Radium(person);
