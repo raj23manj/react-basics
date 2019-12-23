@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import classes from './Cockpit.css'
 
 const cockpit = (props) => {
+    const toggleBtnRef = useRef(null);
+
     // executes for every render cycle of cockpits
     // can have multiple useEffects
     useEffect(() => {
@@ -9,11 +11,12 @@ const cockpit = (props) => {
         console.log('[cockpit.js] useEffect');
         // http request
 
-        const timer = setTimeout(() => {
-            alert('saved data to cloud');
-        }, 1000);
+        // const timer = setTimeout(() => {
+        //     alert('saved data to cloud');
+        // }, 1000);
+        toggleBtnRef.current.click();
         return () => {
-            clearTimeout(timer);
+            // clearTimeout(timer);
             console.log('Cockpit.js cleanup work in effect');
         }
     }, []); // if need to run only once then add [] after render and unmounted //[props.persons]
@@ -48,7 +51,7 @@ const cockpit = (props) => {
             {/* <StyledButton style={style} onClick={this.togglePersonHandler} alt={this.state.showPersons}>
             Switch Name
             </StyledButton> */}
-            <button className={btnClass.join(' ')} onClick={props.toggel} >
+            <button ref={toggleBtnRef} className={btnClass.join(' ')} onClick={props.toggel} >
                 Switch Name
             </button>
         </div>
