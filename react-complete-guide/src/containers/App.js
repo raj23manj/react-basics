@@ -8,6 +8,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 // import WithClass from '../hoc/WithClass';
 import withClass from '../hoc/withClass';
 import Aux from '../hoc/Aux';
+import AuthContext from '../context/auth-context';
 
 // const StyledButton = styled.button`
 //     background-color: ${props => props.alt ? 'red' : 'green'};
@@ -150,14 +151,19 @@ class App extends Component {
       // use with withClass(App, classes.App) approach when we need to add google analytics or some js code to be executed
       <Aux>
         <button onClick={() => { this.setState({ showCockpit: false }) }}>Remove Cockpit</button>
-        {this.state.showCockpit ?
-          <Cockpit showPersons={this.state.showPersons}
-            otherState={this.state.otherState}
-            toggel={this.togglePersonHandler}
-            title={this.props.appTitle}
-            personsLength={this.state.persons.length}
-            login={this.loginHandler} /> : null}
-        {persons}
+        <AuthContext.Provider value={{
+          authenticated: this.state.authenticated,
+          login: this.loginHandler
+        }}>
+          {this.state.showCockpit ?
+            <Cockpit showPersons={this.state.showPersons}
+              otherState={this.state.otherState}
+              toggel={this.togglePersonHandler}
+              title={this.props.appTitle}
+              personsLength={this.state.persons.length}
+              login={this.loginHandler} /> : null}
+          {persons}
+        </AuthContext.Provider>
       </Aux>
       //</WithClass >
       // </StyleRoot>

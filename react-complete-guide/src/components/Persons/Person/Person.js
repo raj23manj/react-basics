@@ -7,6 +7,7 @@ import classes from './Person.css'
 import Aux from '../../../hoc/Aux';
 import withClass from '../../../hoc/withClass';
 import PropTypes from 'prop-types';
+import AuthContext from '../../../context/auth-context';
 
 // function person() {
 //     return <h1></h1>;
@@ -65,12 +66,15 @@ class Person extends Component {
         // <React.Fragment></React.Fragment> or <Fragment></Fragment> by importing from {Fragment} from 'react'
         // does same as AUX 
         return (<Aux>
-            {
-                this.props.isAuth ?
-                    <p>Authenticated</p>
-                    :
-                    <p>Please Log In</p>
-            }
+            <AuthContext.Consumer>
+                {(context) =>
+                    context.authenticated ?
+                        <p>Authenticated</p>
+                        :
+                        <p>Please Log In</p>
+                }
+            </AuthContext.Consumer>
+
             < p onClick={this.props.clicked} > I'm a Person name: {this.props.name}, age: {this.props.age}</p>
             < p > {this.props.children}</p >
             <input text="text"
