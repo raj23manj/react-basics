@@ -48,9 +48,12 @@ class Person extends Component {
         this.inputElementRef = React.createRef();
     }
 
+    static contextType = AuthContext;
+
     componentDidMount() {
         //this.inputElement.focus();
         this.inputElementRef.current.focus();
+        console.log(this.context.authenticated);
     }
 
     render() {
@@ -66,14 +69,18 @@ class Person extends Component {
         // <React.Fragment></React.Fragment> or <Fragment></Fragment> by importing from {Fragment} from 'react'
         // does same as AUX 
         return (<Aux>
-            <AuthContext.Consumer>
+            { /*<AuthContext.Consumer>
                 {(context) =>
                     context.authenticated ?
                         <p>Authenticated</p>
                         :
                         <p>Please Log In</p>
                 }
-            </AuthContext.Consumer>
+            </AuthContext.Consumer> */}
+            {this.context.authenticated ?
+                <p>Authenticated</p>
+                :
+                <p>Please Log In</p>}
 
             < p onClick={this.props.clicked} > I'm a Person name: {this.props.name}, age: {this.props.age}</p>
             < p > {this.props.children}</p >
