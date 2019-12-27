@@ -95,3 +95,16 @@
   * new project 
     * create-react-app react-complete-guide --scripts-version 1.1.5
   * npm start  
+
+# Adding SASS/SCSS
+  * https://medium.com/@oreofeolurin/configuring-scss-with-react-create-react-app-1f563f862724  
+
+# Folder Structure
+  * src -> components
+    * used to keep dumb component, i.e stateless components
+  * src -> containers
+    * used to keep components which manage states, class based or function based(useState)  
+  * src -> assets
+    * to store logos  
+  * src -> hoc
+    * to create higher order components  
