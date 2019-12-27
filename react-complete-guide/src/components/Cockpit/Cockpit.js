@@ -67,4 +67,4 @@ const cockpit = (props) => {
     );
 };
 
-export default React.memo(cockpit); // performance optimisation, use memoiseztion, if props change only chanes
+export default React.memo(cockpit); // performance optimisation, use memoiseztion, if props change only chanes 98
