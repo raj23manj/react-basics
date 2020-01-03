@@ -107,4 +107,7 @@
   * src -> assets
     * to store logos  
   * src -> hoc
-    * to create higher order components  
+    * to create higher order components
+
+# Prop Type Validation
+  * npm i --save prop-types      
