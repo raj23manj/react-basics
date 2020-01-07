@@ -75,7 +75,7 @@
       * During Updation(props or state changes occur)       
        * getDerivedStateFromProps(props, state)
        * shouldComponentUpdate(nextProps, nextState) => check wheter or not to continue
-         * use this if we want to check specific propps changed, if want to change when all props chanhe then extend class from PureComponent
+         * use this if we want to check specific propps changed, if want to change when all props change then extend class from PureComponent
        * render()
        * and then updates child components
        * getSnapshotBeforeUpdate(prevProps, prevState) => used for like restore scrolling position
@@ -103,7 +103,8 @@
   * src -> components
     * used to keep dumb component, i.e stateless components
   * src -> containers
-    * used to keep components which manage states, class based or function based(useState)  
+    * used to keep components which manage states, class based or function based(useState). which encloses other function 
+      components  
   * src -> assets
     * to store logos  
   * src -> hoc
@@ -120,3 +121,11 @@
   * demo = function() {
     this.something  // this does not
   }
+
+ # Performance impovements (182-188)
+   * Added prop type validations to each components(can be used for both class or function based components)
+   * Make sure hidden modals dont get updated 184
+   * can use React.memo to make sure re-rendering does not happen in functional components, or else use shouldComponenUpdate hook
+   
+ # A component can be class or function 
+   * see OrderSummary.js  
