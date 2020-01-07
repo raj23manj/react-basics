@@ -111,3 +111,12 @@
 
 # Prop Type Validation
   * npm i --save prop-types      
+
+# The way this keyword works is different when we use
+  * demo = () => {
+    this.something  // this encloses contextthis of the class
+  }  
+
+  * demo = function() {
+    this.something  // this does not
+  }
