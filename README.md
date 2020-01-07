@@ -70,7 +70,8 @@
         * constructor(props) -> 1st ()
         * getDerivedStateFromProps(props, state) -> 2nd (props change)
         * render() => then all child and their lifecycle hooks get called -> 3rd
-        * componentDidMount() -> triggers re-render, used for async calls
+        * componentDidMount() -> triggers re-render, used for async calls, http calls, side-effects(data changing)
+          not for updating state
 
       * During Updation(props or state changes occur)       
        * getDerivedStateFromProps(props, state)
@@ -80,6 +81,8 @@
        * and then updates child components
        * getSnapshotBeforeUpdate(prevProps, prevState) => used for like restore scrolling position
        * componentDidUpdate() => after dom updated
+         * updating a state from this hook causes a infinite loop
+         * cause setState() causes a trigger to this hook again, we need to handle it
  
       * componentDidCatch()
       * componentWillUnmount() => not used
@@ -126,6 +129,21 @@
    * Added prop type validations to each components(can be used for both class or function based components)
    * Make sure hidden modals dont get updated 184
    * can use React.memo to make sure re-rendering does not happen in functional components, or else use shouldComponenUpdate hook
+   * Custom Notes:
+     * Make sure to give key prop if a list of element or divs when looping. it matters
+   * See 196 for lifecycle update when to use, see mainly 5:16 to use  componentDidUpdate() issue which will be caused 
    
  # A component can be class or function 
    * see OrderSummary.js  
+
+ # Axios (3rd party library) 
+   * https://github.com/axios/axios#interceptors
+   * to make XMLHttp requests, http
+   * used for intercepting requests also
+   * used to create interceptors, in scr -> index.js file
+   * if want to override, the create a axios.js file and override it there and include in the package you want to use it
+   * 204
+
+
+# Authentication SPA
+  * https://medium.com/@jcbaey/authentication-in-spa-reactjs-and-vuejs-the-right-way-e4a9ac5cd9a3  
