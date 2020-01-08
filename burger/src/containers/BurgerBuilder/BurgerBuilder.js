@@ -23,17 +23,29 @@ class BurgerBuilder extends Component {
     // }
 
     state = {
-        ingredients: {
-            salad: 0,
-            bacon: 0,
-            cheese: 0,
-            meat: 0
-        },
+        // ingredients: {  // getting from firebase
+        //     salad: 0,
+        //     bacon: 0,
+        //     cheese: 0,
+        //     meat: 0
+        // },
+        ingredients: null,
         totalPrice: 4,
         purchaseable: false,
         purchasing: false,
         loading: false,
         error: false
+    }
+
+    // intialise data from BE
+    componentDidMount() {
+        axios.get('https://react-max.firebaseio.com/ingredients.json')
+            .then(response => {
+                this.setState({ ingredients: response.data });
+            })
+            .catch(error => {
+                this.setState({ error: true });
+            });
     }
 
     addIngredientHandler = (type) => {
@@ -106,7 +118,7 @@ class BurgerBuilder extends Component {
             },
             deliveryMethod: 'fastest'
         }
-        axios.post('/orders', order)  // reomve the .json in end to get the error handler message
+        axios.post('/orders.json', order)  // reomve the .json in end to get the error handler message
             .then(response => {
                 this.setState({ loading: false, purchasing: false });
                 console.log(response);
@@ -127,6 +139,7 @@ class BurgerBuilder extends Component {
         }
 
         let orderSummary = null;
+        // initially to show until ingredients are fetched from BE, if not error is thrown
         let burger = this.state.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
 
         if (this.state.ingredients) {

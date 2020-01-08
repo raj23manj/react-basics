@@ -19,5 +19,6 @@ class App extends Component {
 
 export default App;
 // setting globally application wise error handling
+// but max says set it to each component with unmount
 //export default withErrorHandler(App, axios);
 

@@ -71,7 +71,7 @@
         * getDerivedStateFromProps(props, state) -> 2nd (props change)
         * render() => then all child and their lifecycle hooks get called -> 3rd
         * componentDidMount() -> triggers re-render, used for async calls, http calls, side-effects(data changing)
-          not for updating state
+          not for updating state. It gets called after child components gets rendered
 
       * During Updation(props or state changes occur)       
        * getDerivedStateFromProps(props, state)
@@ -85,7 +85,7 @@
          * cause setState() causes a trigger to this hook again, we need to handle it
  
       * componentDidCatch()
-      * componentWillUnmount() => not used
+      * componentWillUnmount() => not used, instead of this use constructor to load initial data
         * used in burger error handler
 
   * React Update Dom
