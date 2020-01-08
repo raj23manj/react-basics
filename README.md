@@ -86,6 +86,7 @@
  
       * componentDidCatch()
       * componentWillUnmount() => not used
+        * used in burger error handler
 
   * React Update Dom
     * It does by creating virtual dom of old and changed in memory compare them, if there are changes in the actual dom is touched and updates only the parts which has changes, when render encounters

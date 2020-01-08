@@ -106,7 +106,7 @@ class BurgerBuilder extends Component {
             },
             deliveryMethod: 'fastest'
         }
-        axios.post('/orders.json', order)
+        axios.post('/orders', order)  // reomve the .json in end to get the error handler message
             .then(response => {
                 this.setState({ loading: false, purchasing: false });
                 console.log(response);
@@ -166,5 +166,6 @@ class BurgerBuilder extends Component {
     }
 }
 
-// export default withErrorHandler(BurgerBuilder);
-export default BurgerBuilder;
+export default withErrorHandler(BurgerBuilder, axios);
+// this only sets here to this component, to do global I have set to app.js
+//export default BurgerBuilder;
