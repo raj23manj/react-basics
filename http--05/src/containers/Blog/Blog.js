@@ -6,13 +6,20 @@ import './Blog.css';
 import Posts from './Posts/Posts';
 // import { Route, Link } from 'react-router-dom';
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
-import NewPost from './NewPost/NewPost';
+//import NewPost from './NewPost/NewPost';
 //import FullPost from './FullPost/FullPost';
+
+import asyncComponent from '../../hoc/asyncComponent';
+// import NewPost from './NewPost/NewPost';
+
+const AsyncNewPost = asyncComponent(() => {
+    return import('./NewPost/NewPost');
+});
 
 class Blog extends Component {
 
     state = {
-        auth: false
+        auth: true
     }
 
     // used to send http requests 
@@ -64,10 +71,13 @@ class Blog extends Component {
                     hence position of the route matters 235 */}
                 {/* <Route path="/" exact component={Posts} /> */}
                 <Switch>
-                    {this.state.auth ? <Route path="/new-post" component={NewPost} /> : null}
+                    {this.state.auth ? <Route path="/new-post" component={AsyncNewPost} /> : null}
+                    {/* {this.state.auth ? <Route path="/new-post" component={NewPost} /> : null} */}
                     {/* <Route path="/new-post" component={NewPost} /> */}
                     <Route path="/posts" component={Posts} />
-                    <Redirect from="/" to="/posts" />
+                    {/* one way to handle 404 error to redirect all routes to specific route */}
+                    {/* <Redirect from="/" to="/posts" /> */}
+                    <Route render={() => <h1>Not found</h1>} />
                     {/* Redirect for redirects */}
                     {/* <Route path="/" component={Posts} /> 238, when /2 comes which gets loaded as nested 
                         routes in posts component wont be reached hence remove exact. 240 even use as re-direction */}

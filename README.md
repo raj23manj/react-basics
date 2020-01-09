@@ -197,5 +197,16 @@
     * history - 236
       * used to change route programatically
 
+# Route Guards - 234
+  * used to know when the user is authenticated or not     
+
+# Lazy Loading - 245
+  * see 246 for newer versions of lazy loading
+  * same as angular
+  * to implement lazy loading or code splitting with create react app react-router-4 with webpack config
+
+# AUX Component
+  * from react 16.6 onwards there is a built component React.Fragment instead of creating one manually
+  
 # Authentication SPA
   * https://medium.com/@jcbaey/authentication-in-spa-reactjs-and-vuejs-the-right-way-e4a9ac5cd9a3  
