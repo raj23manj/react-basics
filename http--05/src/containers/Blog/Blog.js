@@ -5,9 +5,9 @@ import React, { Component } from 'react';
 import './Blog.css';
 import Posts from './Posts/Posts';
 // import { Route, Link } from 'react-router-dom';
-import { Route, NavLink, Switch } from 'react-router-dom';
+import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import NewPost from './NewPost/NewPost';
-import FullPost from './FullPost/FullPost';
+//import FullPost from './FullPost/FullPost';
 
 class Blog extends Component {
 
@@ -35,7 +35,7 @@ class Blog extends Component {
                                 {/* to make a route active , by default it adds active class, 
                                 to add custom my-active class or add custom styles*/}
                                 <li><NavLink
-                                    to="/"
+                                    to="/posts/"
                                     exact
                                     activeClassName="my-active"
                                     activeStyle={{
@@ -58,10 +58,15 @@ class Blog extends Component {
                 {/* switch is used to match only one route it first encounters, when routes names are same  
                     if not renders all the routes. THe order matters, coz :id thinks new-post is a value 
                     hence position of the route matters 235 */}
+                {/* <Route path="/" exact component={Posts} /> */}
                 <Switch>
-                    <Route path="/" exact component={Posts} />
                     <Route path="/new-post" component={NewPost} />
-                    <Route path="/:id" exact component={FullPost} />
+                    <Route path="/posts" component={Posts} />
+                    <Redirect from="/" to="/posts" />
+                    {/* Redirect for redirects */}
+                    {/* <Route path="/" component={Posts} /> 238, when /2 comes which gets loaded as nested 
+                        routes in posts component wont be reached hence remove exact. 240 even use as re-direction */}
+                    {/* <Route path="/:id" exact component={FullPost} /> creating this as nested routes in posts component */}
                 </Switch>
             </div>
         );

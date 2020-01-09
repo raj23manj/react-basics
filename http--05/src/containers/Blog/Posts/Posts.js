@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from '../../../axios';
-import { Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+
 import Post from '../../../components/Post/Post';
+import FullPost from '../FullPost/FullPost';
+
 
 import './Posts.css';
 
@@ -32,8 +35,8 @@ class Posts extends Component {
 
     postSelectedHandler = (id) => {
         //this.setState({ selectedPostId: id });
-        this.props.history.push({ pathname: '/' + id });
-        //this.props.history.push('/' + id);
+        this.props.history.push({ pathname: '/posts/' + id });
+        //this.props.history.push('/posts/' + id);
     }
 
     render() {
@@ -45,7 +48,7 @@ class Posts extends Component {
                     import { withRouter } from 'react-router-dom'
                 */ }
                 return (
-                    //<Link to={'/' + post.id} key={post.id}> // one way to do this, and can be handled in the handler
+                    //<Link to={'/posts/' + post.id} key={post.id}> // one way to do this, and can be handled in the handler
                     <Post
                         key={post.id}
                         title={post.title}
@@ -58,9 +61,15 @@ class Posts extends Component {
         }
 
         return (
-            <section className="Posts">
-                {posts}
-            </section>
+            <div>
+                <section className="Posts">
+                    {posts}
+                </section>
+                {/* this is done to ensure that id gets appended to localhost:3000/posts/3 
+                    , or else it will append like localhost:3000/3 */}
+                <Route path={this.props.match.url + '/:id'} exact component={FullPost} />
+            </div>
+
         );
     }
 }
