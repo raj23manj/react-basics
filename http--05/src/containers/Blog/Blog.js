@@ -11,6 +11,10 @@ import NewPost from './NewPost/NewPost';
 
 class Blog extends Component {
 
+    state = {
+        auth: false
+    }
+
     // used to send http requests 
     // componentDidMount() {
     // }
@@ -60,7 +64,8 @@ class Blog extends Component {
                     hence position of the route matters 235 */}
                 {/* <Route path="/" exact component={Posts} /> */}
                 <Switch>
-                    <Route path="/new-post" component={NewPost} />
+                    {this.state.auth ? <Route path="/new-post" component={NewPost} /> : null}
+                    {/* <Route path="/new-post" component={NewPost} /> */}
                     <Route path="/posts" component={Posts} />
                     <Redirect from="/" to="/posts" />
                     {/* Redirect for redirects */}

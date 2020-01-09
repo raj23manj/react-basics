@@ -13,6 +13,7 @@ class NewPost extends Component {
     }
 
     componentDidMount() {
+        // If unauth => this.props.history.replace('/posts');
         console.log(this.props);
     }
 
@@ -27,6 +28,7 @@ class NewPost extends Component {
                 console.log(response);
                 this.props.history.replace('/posts');
                 // this.setState( { submitted: true } );
+                // redirect wont  let back button work, if needed to push on stack use push or replace
             });
     }
 
