@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from '../../../axios';
-
+import { Link } from 'react-router-dom';
 import Post from '../../../components/Post/Post';
 
 import './Posts.css';
@@ -31,18 +31,29 @@ class Posts extends Component {
     }
 
     postSelectedHandler = (id) => {
-        this.setState({ selectedPostId: id });
+        //this.setState({ selectedPostId: id });
+        this.props.history.push({ pathname: '/' + id });
+        //this.props.history.push('/' + id);
     }
 
     render() {
         let posts = <p style={{ textAlign: 'center' }}>Something went wrong!</p>;
         if (!this.state.error) {
             posts = this.state.posts.map(post => {
-                return <Post
-                    key={post.id}
-                    title={post.title}
-                    author={post.author}
-                    clicked={() => this.postSelectedHandler(post.id)} />;
+                {/* {...this.props} passes the complete (match, history)props of the posts container to post component 228
+                    match={this.props.match} or use this in the child component
+                    import { withRouter } from 'react-router-dom'
+                */ }
+                return (
+                    //<Link to={'/' + post.id} key={post.id}> // one way to do this, and can be handled in the handler
+                    <Post
+                        key={post.id}
+                        title={post.title}
+                        author={post.author}
+                        {...this.props}
+                        clicked={() => this.postSelectedHandler(post.id)} />
+                    //</Link>
+                );
             });
         }
 
