@@ -207,6 +207,11 @@
 
 # AUX Component
   * from react 16.6 onwards there is a built component React.Fragment instead of creating one manually
-  
+
+# When Hoisting or deploying
+  * 247
+  * Always need to load index.html for the web server to reach react app, in development it is default in prod 
+    we need to set it up  
+
 # Authentication SPA
   * https://medium.com/@jcbaey/authentication-in-spa-reactjs-and-vuejs-the-right-way-e4a9ac5cd9a3  
