@@ -213,5 +213,24 @@
   * Always need to load index.html for the web server to reach react app, in development it is default in prod 
     we need to set it up  
 
+# Redux
+  * Reducer
+    * it is the one which updates the state. It take's an old state and action as arguments
+  * Store
+    * creates a global js store object to store the state
+  * Dispatching Action
+    * what action needs to be done, like increment or decrement. An payload can be sent
+  * Subscription
+    * all components subsscribed to this will be updated  
+
+  * Correct way of adding and deleting nested data
+    * https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/8303068#questions   
+    * https://redux.js.org/recipes/structuring-reducers/immutable-update-patterns/
+
+  * When to use Redux  
+    * 298
+    * Use redux if data is used across components
+    * Using Local and UI data
+
 # Authentication SPA
   * https://medium.com/@jcbaey/authentication-in-spa-reactjs-and-vuejs-the-right-way-e4a9ac5cd9a3  
