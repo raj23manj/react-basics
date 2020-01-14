@@ -213,7 +213,7 @@
   * Always need to load index.html for the web server to reach react app, in development it is default in prod 
     we need to set it up  
 
-# Redux
+# Redux (used more of service concept to pass around data only)
   * Reducer
     * it is the one which updates the state. It take's an old state and action as arguments
   * Store
@@ -234,3 +234,6 @@
 
 # Authentication SPA
   * https://medium.com/@jcbaey/authentication-in-spa-reactjs-and-vuejs-the-right-way-e4a9ac5cd9a3  
+
+# Nest.js
+  * https://dev.to/rubiin/awesome-nestjs-4pm7  
