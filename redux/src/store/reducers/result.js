@@ -1,7 +1,14 @@
 import * as actionTypes from '../actions/actionsTypes';
+import { updateObject } from '../utility';
+
 
 const initialState = {
     results: []
+};
+
+const deleteResult = (state, action) => {
+    const updatedArray = state.results.filter((result) => result.id !== action.resultElId);
+    return updateObject(state, { results: updatedArray });
 };
 
 const reducer = (state = initialState, action) => {
@@ -10,14 +17,15 @@ const reducer = (state = initialState, action) => {
         case actionTypes.STORE_RESULT:
             // No Executin async code here in reducers only sync code
             // to execute async code we have to do it with actionCreators
-            return {
-                ...state,
-                // array push manipulates the old array, hence concat returns a new array
-                // immutable way of updating an array by adding an item 293
-                // both the redcures will be merged as one hence we can get state.counter, but can access directly
-                // hence pass it as action
-                results: state.results.concat({ id: new Date(), value: action.result })
-            }
+            // return {
+            //     ...state,
+            //     // array push manipulates the old array, hence concat returns a new array
+            //     // immutable way of updating an array by adding an item 293
+            //     // both the redcures will be merged as one hence we can get state.counter, but can access directly
+            //     // hence pass it as action
+            //     results: state.results.concat({ id: new Date(), value: action.result })
+            // }
+            return updateObject(state, { results: state.results.concat({ id: new Date(), value: action.result }) });
         case actionTypes.DELETE_RESULT:
             // this mutates not good
             //state.results.splice(id, 1)
@@ -27,12 +35,13 @@ const reducer = (state = initialState, action) => {
             // newArray.results.splice(id, 1)
             // another way and common, and gives a new array, if we return true return for every element with new array
             // const updatedArray = state.results.filter(result => true);
-            const updatedArray = state.results.filter((result) => result.id !== action.resultElId);
+            // const updatedArray = state.results.filter((result) => result.id !== action.resultElId);
 
-            return {
-                ...state,
-                results: updatedArray
-            }
+            // return {
+            //     ...state,
+            //     results: updatedArray
+            // }
+            return deleteResult(state, action);
     }
 
     return state;

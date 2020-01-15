@@ -232,6 +232,13 @@
     * Use redux if data is used across components
     * Using Local and UI data
 
+  * Reducers needs to run Synchronously
+
+  * To execute async code we have to do it with actionCreators, and use redux-thunk it will not only return the action
+    but dispatch it also, coz the dsipatch part is the one which runs asynchronously  
+    * thunk handles the async part, we use it as a utility to run async code and pass synchronous action creators to it to change 
+      the state 
+
 # Authentication SPA
   * https://medium.com/@jcbaey/authentication-in-spa-reactjs-and-vuejs-the-right-way-e4a9ac5cd9a3  
 
