@@ -8,6 +8,8 @@ const reducer = (state = initialState, action) => {
 
     switch (action.type) {
         case actionTypes.STORE_RESULT:
+            // No Executin async code here in reducers only sync code
+            // to execute async code we have to do it with actionCreators
             return {
                 ...state,
                 // array push manipulates the old array, hence concat returns a new array
