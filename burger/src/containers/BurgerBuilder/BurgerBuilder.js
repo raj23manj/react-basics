@@ -28,13 +28,14 @@ class BurgerBuilder extends Component {
         //totalPrice: 4,
         // purchaseable: false,
         purchasing: false,
-        loading: false,
-        error: false
+        // loading: false,
+        // error: false
     }
 
     // intialise data from BE
     componentDidMount() {
         console.log(this.props);
+        this.props.onInitIngredients();
         // axios.get('https://react-max.firebaseio.com/ingredients.json')
         //     .then(response => {
         //         this.setState({ ingredients: response.data });
@@ -149,7 +150,7 @@ class BurgerBuilder extends Component {
 
         let orderSummary = null;
         // initially to show until ingredients are fetched from BE, if not error is thrown
-        let burger = this.state.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
+        let burger = this.props.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
 
         if (this.props.ings) {
             burger = (
@@ -176,9 +177,9 @@ class BurgerBuilder extends Component {
             />
         }
 
-        if (this.state.loading) {
-            orderSummary = <Spinner />;
-        }
+        // if (this.state.loading) {
+        //     orderSummary = <Spinner />;
+        // }
 
         return (
             <Aux>
@@ -194,7 +195,8 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
     return {
         ings: state.ingredients,
-        totalPrice: state.totalPrice
+        totalPrice: state.totalPrice,
+        error: state.error
     };
 };
 
@@ -204,6 +206,7 @@ const mapDispatchToProps = dispatch => {
         // onIngredientRemoved: (ingName) => dispatch({ type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingName })
         onIngredientAdded: (ingName) => dispatch(actions.addIngredient(ingName)),
         onIngredientRemoved: (ingName) => dispatch(actions.removeIngredient(ingName)),
+        onInitIngredients: () => dispatch(actions.initIngredients()),
     };
 };
 
