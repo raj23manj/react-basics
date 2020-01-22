@@ -244,3 +244,6 @@
 
 # Nest.js
   * https://dev.to/rubiin/awesome-nestjs-4pm7  
+
+* Http Only Cookie
+  * https://medium.com/@paul.senon/node-express-js-cookies-set-get-secure-884311606148
